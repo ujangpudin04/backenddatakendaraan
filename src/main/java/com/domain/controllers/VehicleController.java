@@ -1,5 +1,9 @@
 package com.domain.controllers;
 
+import java.util.List;
+
+// import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.domain.dto.ResponseData;
+import com.domain.dto.SearchData;
+// import com.domain.dto.SearchData;
 import com.domain.models.entities.Vehicle;
 import com.domain.services.VehicleService;
 
@@ -82,5 +88,33 @@ public class VehicleController {
     @DeleteMapping("/{id}")
     public void removeOne(@PathVariable("id") Long id) {
         vehicleService.removeOne(id);
+    }
+
+    @PostMapping("/search/namapemilik")
+    public List<Vehicle> getVehicleByNamaPemilik(@RequestBody SearchData searchData) {
+        return vehicleService.findByNamaPemilik(searchData.getSearchKey());
+    }
+
+    @PostMapping("/search/nomorregkendaraan")
+    public List<Vehicle> getVehicleByNomorRegKendaraan(@RequestBody SearchData searchData) {
+        return vehicleService.findByNomorRegKendaraan(searchData.getSearchByNoReg());
+    }
+
+    // @PostMapping("/search")
+    // public List<Vehicle> search(@RequestBody Vehicle vehicle) {
+    // return vehicleService.searchVehicles(vehicle.getNamapemilik(),
+    // vehicle.getNomorregkendaraan());
+    // }
+
+    @PostMapping("/search/namapemiliklike")
+    public List<Vehicle> getVehicleByNamaPemilikLike(@RequestBody SearchData searchData) {
+        return vehicleService.findVehicleByNamaPemilikLike(searchData.getSearchKey());
+    }
+
+    @PostMapping("/search")
+    @CrossOrigin(origins = "*")
+    List<Vehicle> search(@RequestBody SearchData searchData) {
+        return vehicleService.searchVehicles(searchData.getSearchKey(),
+                searchData.getSearchByNoReg());
     }
 }

@@ -21,6 +21,7 @@ public class Vehicle implements Serializable {
     private Long id;
 
     @NotEmpty(message = "Nomor Register Kendaraan Tidak Boleh Kosong")
+    @Column(length = 150, nullable = false, unique = true)
     private String nomorregkendaraan;
 
     @NotEmpty(message = "Nama Pemilik Tidak Boleh Kosong")
