@@ -12,19 +12,19 @@ public interface VehicleRepo extends CrudRepository<Vehicle, Long> {
     // @Query("SELECT v FROM Vehicle v WHERE v.namapemilik = :namapemilik")
     // public Vehicle findByNamaPemiilik(@Param("namapemilik") String namapemilik);
     @Query("SELECT v FROM Vehicle v WHERE v.namapemilik = :namapemilik")
-    public List<Vehicle> findByNamaPemiilik(@Param("namapemilik") String namapemilik);
+    List<Vehicle> findByNamaPemiilik(@Param("namapemilik") String namapemilik);
 
     @Query("SELECT v FROM Vehicle v WHERE v.namapemilik LIKE :namapemilik")
-    public List<Vehicle> findVehicleByNamaPemilikLike(@Param("namapemilik") String namapemilik);
+    List<Vehicle> findVehicleByNamaPemilikLike(@Param("namapemilik") String namapemilik);
 
     @Query("SELECT v FROM Vehicle v WHERE v.nomorregkendaraan = :nomorregkendaraan")
-    public List<Vehicle> findByNomorRegKendaraan(@Param("nomorregkendaraan") String nomorregkendaraan);
+    List<Vehicle> findByNomorRegKendaraan(@Param("nomorregkendaraan") String nomorregkendaraan);
 
     @Query("SELECT v FROM Vehicle v WHERE v.nomorregkendaraan LIKE:nomorregkendaraan")
-    public List<Vehicle> findByNomorRegKendaraanLike(@Param("nomorregkendaraan") String nomorregkendaraan);
+    List<Vehicle> findByNomorRegKendaraanLike(@Param("nomorregkendaraan") String nomorregkendaraan);
 
-    @Query("SELECT v FROM Vehicle v WHERE v.namapemilik= :namapemilik AND v.nomorregkendaraan = :nomorregkendaraan")
-    public List<Vehicle> searchVehicleByNamaPemilikAndNomorReg(@Param("namapemilik") String namapemilik,
+    @Query("SELECT v FROM Vehicle v WHERE v.namapemilik LIKE:namapemilik OR v.nomorregkendaraan LIKE:nomorregkendaraan")
+    List<Vehicle> searchVehicleByNamaPemilikAndNomorReg(@Param("namapemilik") String namapemilik,
             @Param("nomorregkendaraan") String nomorregkendaraan);
 
 }

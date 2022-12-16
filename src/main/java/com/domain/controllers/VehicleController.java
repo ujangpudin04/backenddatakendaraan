@@ -100,6 +100,11 @@ public class VehicleController {
         return vehicleService.findByNomorRegKendaraan(searchData.getSearchByNoReg());
     }
 
+    @PostMapping("/search/nomorregkendaraanlike")
+    public List<Vehicle> getVehicleByNomorRegKendaraanLike(@RequestBody SearchData searchData) {
+        return vehicleService.findVehicleByNomorRegKendaraanLike(searchData.getSearchByNoReg());
+    }
+
     // @PostMapping("/search")
     // public List<Vehicle> search(@RequestBody Vehicle vehicle) {
     // return vehicleService.searchVehicles(vehicle.getNamapemilik(),

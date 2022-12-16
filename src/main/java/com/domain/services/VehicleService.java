@@ -60,12 +60,12 @@ public class VehicleService {
         List<Vehicle> vehiclesList = null;
 
         if (nomorregkendaraan.equals("") && StringUtils.hasText(namapemilik)) {
-            vehiclesList = vehicleRepo.findVehicleByNamaPemilikLike(namapemilik);
+            vehiclesList = vehicleRepo.findVehicleByNamaPemilikLike("%" + namapemilik + "%");
         } else if (StringUtils.hasText(nomorregkendaraan) && namapemilik.equals("")) {
-            vehiclesList = vehicleRepo.findByNomorRegKendaraan(nomorregkendaraan);
+            vehiclesList = vehicleRepo.findByNomorRegKendaraanLike("%" + nomorregkendaraan + "%");
         } else {
-            vehiclesList = vehicleRepo.searchVehicleByNamaPemilikAndNomorReg(namapemilik,
-                    nomorregkendaraan);
+            vehiclesList = vehicleRepo.searchVehicleByNamaPemilikAndNomorReg(
+                    "%" + namapemilik + "%", "%" + nomorregkendaraan + "%");
         }
 
         return vehiclesList;

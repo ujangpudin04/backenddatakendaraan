@@ -27,23 +27,18 @@ public class Vehicle implements Serializable {
     @NotEmpty(message = "Nama Pemilik Tidak Boleh Kosong")
     private String namapemilik;
 
-    @NotEmpty(message = "Alamat Tidak Boleh Kosong")
     @Column(name = "alamat", length = 500)
     private String alamat;
 
-    @NotEmpty(message = "Merk Kendaraan Tidak Boleh Kosong")
     private String merkkendaraan;
 
-    @NotEmpty(message = "Tahun Pembuatan Tidak Boleh Kosong")
+    @Column(default= new Date())
     private String tahunpembuatan;
 
-    @NotEmpty(message = "Kapasitas Silinder Tidak Boleh Kosong")
     private String kapasitassilinder;
 
-    @NotEmpty(message = "Warna Tidak Boleh Kosong")
     private String warna;
 
-    @NotEmpty(message = "Bahan Bakar Tidak Boleh Kosong")
     private String bahanbakar;
 
     public Vehicle(Long id, String nomorregkendaraan, String namapemilik, String alamat, String merkkendaraan,
